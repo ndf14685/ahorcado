@@ -20,6 +20,7 @@ body{
 }
 
 .seccion1{
+    display: -webkit-box;
     background-color: burlywood;
 }
 
@@ -27,6 +28,11 @@ body{
     width: 40%;
     height: 200px;
     background-color: black;
+}
+#letrasIngresadas{
+    width: 60%;
+    height: 200px;
+    background-color: grey;
 }
 
 .seccion2{
@@ -37,6 +43,7 @@ body{
 }
 
 .recuadro{
+    font-size: 4em;
     margin: 0px 2px;
     width: 75px;
     height: 70px;
