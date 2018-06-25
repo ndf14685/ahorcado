@@ -18,7 +18,7 @@ Cuando la palabra es adivinada antes del límite de turnos se dictamina al jugad
 
 ### Fin del juego.
 
-Cuando el jugador termina la partida se le mostrará un aviso en pantalla indicando las estadísticas  de partidas jugadas (palabras adivinadas) de cantidad de veces jugadas, aciertos y derrotas desde que inició la sesión, preguntando además si quiere continuar jugando o no.
+Cuando el jugador termina la partida se le mostrará un aviso en pantalla, indicando si ganó o perdió. Dicho cartel debe tener 3 botones en la parte inferior, en el siguiente orden: un botón para seguir jugando, con el texto SEGUIR JUGANDO, otro para mostrar las estadísticas de partidas jugadas (palabras adivinadas) de cantidad de veces jugadas, aciertos y derrotas desde que inició la sesión con el texto ESTADISTICAS y un boton para cerrarlo el aviso, con el texto SALIR.
 
 ### Tecnologías
 
