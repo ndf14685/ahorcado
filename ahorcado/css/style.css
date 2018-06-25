@@ -1,0 +1,45 @@
+body{
+    background-color: burlywood;
+    margin: 0;
+}
+.contenedor{
+    width: 90%;
+    background-color: black;
+    margin: 0 auto;
+}
+
+.cabecera-boton{
+    margin: 0;
+    background-color: brown;
+}
+
+.boton{
+    color: #fff;
+    background-color: blueviolet;
+    cursor: pointer;
+}
+
+.seccion1{
+    background-color: burlywood;
+}
+
+.contador-turnos{
+    width: 40%;
+    height: 200px;
+    background-color: black;
+}
+
+.seccion2{
+    background-color: white;
+}
+#espacioDeLetras{
+    display: -webkit-box;
+}
+
+.recuadro{
+    margin: 0px 2px;
+    width: 75px;
+    height: 70px;
+    background-color: #fff;
+    border: #000 solid 2px;
+}
