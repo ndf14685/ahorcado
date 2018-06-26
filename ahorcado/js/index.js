@@ -111,7 +111,7 @@ function ingresoCaracter(){
     } else {
         letrasIngresadas.push(caracter);
 
-        mostrarCaracterEnCuadro(caracter);    
+        mostrarCaracterEnCuadro(caracter);
     }
 
     turnosRestantes--;
@@ -155,4 +155,3 @@ function jugar(){
 window.onload = function() {
     inicializar();
   };
-
