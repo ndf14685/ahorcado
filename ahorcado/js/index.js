@@ -1,12 +1,23 @@
 let partidasJugadas, palabrasAdivinadas, palabraSeleccionada, turnosRestantes, letrasIngresadas, palabraAdivinada;
 const grillaLetras = document.getElementById("letrasIngresadas");
 const grillaPalabra = document.getElementById("espacioDeLetras");
+const botonJugar = document.getElementById("");
+const botonLetra = document.getElementById("");
+const letraIngresada = document.getElementById("");
 
 function inicializar(){
     // Incializar variables Globales
 
     partidasJugadas = 0;
     palabrasAdivinadas = 0;
+/*
+    botonJugar.addEventListener('click', jugar);
+    botonLetra.addEventListener('click', procesarCaracterIngresado);
+
+    botonJugar.hidden = true;
+    botonLetra.hidden = false;
+    letraIngresada.hidden = false;
+*/    
 }
 
 function seleccionarPalabra(palabras){
@@ -24,24 +35,20 @@ function caracterValido(caracter){
 }
 
 function caracterEnPalabra(caracter, palabra, adivinada){
-    // Verificar que la letra seleccionada este en la palabra a adivinar
-
+    // Verificar que la letra seleccionada este en una determinada palabra, de ser necesario la muestra como adivinada
     let estaEnPalabra = false;
 
     for (let i=0; i < palabra.length; i++){
         if (caracter.toUpperCase() === palabra[i].toUpperCase()){
-            adivinada[i] = palabra[i].toUpperCase();
+            if (adivinada){
+                adivinada[i] = palabra[i].toUpperCase();
+            }
+
             estaEnPalabra = true;
         }
     }
 
     return estaEnPalabra;
-}
-
-function caracterEnCuadro(caracter){
-    // Verificar que la letra seleccionada este en las letras que ya se usaron y no forman parte de la palabra a adivinar
-
-    return true;
 }
 
 function mostrarCaracterEnPalabra(grilla, palabra){
@@ -54,9 +61,12 @@ function mostrarCaracterEnPalabra(grilla, palabra){
     }
 }
 
-function mostrarCaracterEnCuadro(caracter){
+function mostrarCaracterEnLetrasIngresadas(grilla, caracter){
     // Muestra la letra seleccionada y que no forma parte de la palabra a adivinar en la pantalla
-
+    const letra = document.createElement("div");
+    letra.className = "textoDeLetras";
+    letra.textContent = caracter;
+    grilla.appendChild(letra);
 }
 
 function mostrarCartel(ganador){
@@ -66,12 +76,18 @@ function mostrarCartel(ganador){
     } else {
 
     }
-
 }
 
-function esGanador(){
+function esGanador(palabra){
     // Verifica si acerto la palabra
 
+    for (let i=0; i < palabra.length; i++){
+        if (palabra[i] === "_"){
+            return false;
+        }
+    }
+
+    return true;
 }
 
 function sacarAcentos(palabra){
@@ -115,13 +131,13 @@ function sacarAcentos(palabra){
 function procesarCaracterIngresado(){
     // Procesa el caracter ingresado por el usuario
     
-    const caracter = '';
+    const caracter = letraIngresada.textContent;
 
     if (!caracterValido(caracter)) {
         return ;
     }
 
-    if (caracterEnCuadro(caracter)){
+    if (caracterEnPalabra(caracter, letrasIngresadas)){
         return;
     }
 
@@ -130,12 +146,12 @@ function procesarCaracterIngresado(){
     } else {
         letrasIngresadas.push(caracter);
 
-        mostrarCaracterEnCuadro(caracter);
+        mostrarCaracterEnLetrasIngresadas(grillaLetras, caracter);
     }
 
     turnosRestantes--;
 
-    if (esGanador()) {
+    if (esGanador(palabraAdivinada)) {
         mostrarCartel(true);
     } else {
         if (turnosRestantes === 0){
@@ -152,27 +168,31 @@ function blanquearGrilla(grilla){
     }
 }
 
-function inicializarGrillaPalabra(objetoGrilla, cantidadLetras){
+function inicializarGrillaPalabra(grilla, cantidadLetras){
     // Configura la grilla donde se mostrara el estado de la palabra a adivinar
 
-    blanquearGrilla(objetoGrilla);
+    blanquearGrilla(grilla);
 
     for (let i = 0; i < cantidadLetras; i++){
         const letra = document.createElement("div");
         letra.className = "guiones";
         letra.textContent = "_";
-        objetoGrilla.appendChild(letra);
+        grilla.appendChild(letra);
     }
 }
 
-function inicializarGrillaLetras(objetoGrilla){
+function inicializarGrillaLetras(grilla){
     // Configura la grilla donde se mostrara las letras ingresadas y que no forman parte de la letra a adivinar
 
-    blanquearGrilla(objetoGrilla);    
+    blanquearGrilla(grilla);    
 }
 
 function jugar(){
     // Lanza el juego e inicializar lo necesario para la nueva partida
+
+    botonJugar.hidden = false;
+    botonLetra.hidden = true;
+    letraIngresada.hidden = true;
 
     partidasJugadas++
 
