@@ -11,14 +11,11 @@ function seleccionarPalabra(palabras){
 }
 
 function caracterValido(caracter){
-        caracter=2;
-        tecla = (document.all) ? caracter.keyCode : caracter.which; // 2
-        if (tecla==8) return true; // 3
-        patron =/[A-Za-z\s]/; // 4
-        te = String.fromCharCode(tecla); // 5
-        return patron.test(te); // 6
-  }
-
+  tecla = (document.all) ? caracter.keyCode : caracter.which; // 2
+  if (tecla==8) return true; // 3
+  patron =/[A-Za-z\s]/; // 4
+  te = String.fromCharCode(tecla); // 5
+  return patron.test(te); // 6
 }
 
 function caracterEnPalabra(caracter){
