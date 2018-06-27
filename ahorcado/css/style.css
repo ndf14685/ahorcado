@@ -3,65 +3,94 @@ body{
     background-image: url('../img/fondo.png')
 }
 h1{
-    margin: 0;
+    margin: 10% 20%;
+    float: right;
 }
 h3{
     margin: 0;
-    color: #fff;
+    color: #000;
 }
 .contenedor{
-    width: 90%;
-    background-color: black;
-    margin: 0 auto;
+    width: 95%;
+    margin: 10px auto;
 }
 .cabecera-boton{
     margin: 0;
+    display: -webkit-box;
     background-color: brown;
+}
+.presentacion{
+    width: 55%;
+    background-color: #37373A;
+    display: table;
+}
+.logo{
+    width: 22%;
+    height: auto;
+    float: left;
+}
+.comienzo{
+    display: -webkit-box;
+    width: 45%;
 }
 #boton{
     color: #fff;
-    background-color: blueviolet;
+    background-color: #FA1E29;
     cursor: pointer;
+    display: -webkit-box;
+    width: -webkit-fill-available;
+}
+#juego{
+    margin-top: 20px;
 }
 .seccion1{
     display: -webkit-box;
-    background-color: burlywood;
+    background-color: #fff;
 }
 .turnos-ingreso{
     display: -webkit-box;
     width: 45%;
-    padding: 0px 20px;
-    background-color: rgb(48, 98, 113);
 }
 .turnos{
     display: inline-table;
 }
+.tituloTurno{
+    color: #fff;
+}
 #campoDeIngreso{
-    display: inline;
-    margin: 0;
+    display: inline-block;
+    margin: 15px 17px;
 }
 
 #selectorDeTurno{
+    color: #fff;
     font-size: 25px;
     text-align: center;
-    margin: 0px 2px;
+    margin: 15px 17px;
     width: 100px;
     height: 100px;
-    background-color: #1c2261;
+    background-color: #0A2C41;
+}
+#selectorDeTurno p{
+    margin: 2px 2px;
+    text-align: center;
+    font-size: 50px;
 }
 .textoDeLetras{
+    display: -webkit-inline-box;
     font-size: 2em;
     width: fit-content;
     font-size: 3em;
     border: crimson double 4px;
     padding: 1px 5px;
-    margin: 0px 5px;
+    margin: 3px 6px;
 }
 .seccion2{
     background-color: white;
 }
 #espacioDeLetras{
     display: -webkit-box;
+    margin: 0% 3%;
 }
 .guiones{
     height: fit-content;
@@ -69,7 +98,10 @@ h3{
     border-style: solid;
     border-width: 0px 0px 4px 0px;
     font-size: 5em;
-    margin: 20px 10px;
+    margin: 80px 10px;
+}
+#letrasIngresadas{
+    width: 55%;
 }
 #recuadroLetra{
     font-size: 4em;
@@ -85,10 +117,14 @@ h3{
     cursor: pointer;
 }
 
-@media (min-width:724px){
+@media (min-width:769px){
+    #selectorDeTurno{
+    margin: 0px 2px;
+    }
     .turnos{
     display: block;
     margin-top: 22px;
+    margin-left: 20px;
     }
     #campoDeIngreso{
     display: inline-table;
