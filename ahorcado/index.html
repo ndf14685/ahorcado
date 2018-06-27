@@ -11,29 +11,40 @@
 </head>
 
 <body>
-  <div class="contenedor">
+<div class="contenedor">
     <section class="cabecera-boton">
-        <button class="boton">Hacé click para comenzar</button>
+        <button id="boton">Hacé click para comenzar</button>
         <h1>Ahorcado</h1>
     </section>
-    <section class="seccion1">
-        <div class="turnos-ingreso">
-          <div id="campoDeIngreso">
-            <input class="recuadro"></input>
-          </div>
-        </div>
-    <div id="letrasIngresadas">
-      <h3>Letras Usadas</h3>
-      <div class="textoDeLetras">ee </div>
-    </div>
-    </section>
-    <section class="seccion2">
-      <div id="espacioDeLetras">
-        <div class="guiones">E</div>
-      </div>
-    </section>
+  <div id="juego">
+        <section class="seccion1">
+          <div class="turnos-ingreso">
+              <div class="turnos">
+                <h3>Turnos</h3>
+                <div id="selectorDeTurno">
 
+                </div>
+              </div>
+            <div id="campoDeIngreso">
+              <h3>Ingresa una letra</h3>
+              <input id="recuadroLetra"></input>
+              <button id="enter">Enter</button>
+            </div>
+          </div>
+        <div id="letrasIngresadas">
+          <h3>Letras Usadas</h3>
+          <div class="textoDeLetras">E</div>
+          <div class="textoDeLetras">E</div>
+          <div class="textoDeLetras">E</div>
+        </div>
+        </section>
+        <section class="seccion2">
+          <div id="espacioDeLetras">
+            <div class="guiones">E</div>
+          </div>
+        </section>
   </div>
+</div>
 
   <script src="js/listaPalabras.js"></script>
   <script src="js/index.js"></script>
@@ -41,3 +52,4 @@
 </body>
 
 </html>
+

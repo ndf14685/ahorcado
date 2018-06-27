@@ -1,6 +1,6 @@
 body{
-    background-color: burlywood;
     margin: 0;
+    background-image: url('../img/fondo.png')
 }
 h1{
     margin: 0;
@@ -13,33 +13,39 @@ h3{
     background-color: black;
     margin: 0 auto;
 }
-
 .cabecera-boton{
     margin: 0;
     background-color: brown;
 }
-
-.boton{
+#boton{
     color: #fff;
     background-color: blueviolet;
     cursor: pointer;
 }
-
 .seccion1{
     display: -webkit-box;
     background-color: burlywood;
 }
 .turnos-ingreso{
-    width: 40%;
-    height: 200px;
+    display: -webkit-box;
+    width: 45%;
+    padding: 20px;
     background-color: rgb(48, 98, 113);
 }
-#letrasIngresadas{
-    width: 60%;
-    height: 200px;
-    background-color: grey;
+.turnos{
+    display: inline-table;
 }
-
+#campoDeIngreso{
+    display: inline-table;
+}
+#selectorDeTurno{
+    font-size: 4em;
+    margin: 0px 2px;
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    border: #000 solid 2px;
+}
 .textoDeLetras{
     font-size: 2em;
     width: fit-content;
@@ -48,7 +54,6 @@ h3{
     padding: 1px 5px;
     margin: 0px 5px;
 }
-
 .seccion2{
     background-color: white;
 }
@@ -61,13 +66,18 @@ h3{
     border-style: solid;
     border-width: 0px 0px 4px 0px;
     font-size: 5em;
+    margin: 20px 10px;
 }
-
-.recuadro{
+#recuadroLetra{
     font-size: 4em;
     margin: 0px 2px;
     width: 80px;
     height: 80px;
     background-color: #fff;
     border: #000 solid 2px;
+}
+#enter{
+    color: #fff;
+    background-color: blueviolet;
+    cursor: pointer;
 }
