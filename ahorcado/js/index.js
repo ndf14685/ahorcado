@@ -1,23 +1,24 @@
 let partidasJugadas, palabrasAdivinadas, palabraSeleccionada, turnosRestantes, letrasIngresadas, palabraAdivinada;
 const grillaLetras = document.getElementById("letrasIngresadas");
 const grillaPalabra = document.getElementById("espacioDeLetras");
-const botonJugar = document.getElementById("");
-const botonLetra = document.getElementById("");
-const letraIngresada = document.getElementById("");
+const botonJugar = document.getElementById("boton");
+const botonLetra = document.getElementById("enter");
+const letraIngresada = document.getElementById("recuadroLetra");
+const turnos = document.getElementById("selectorDeTurno");
 
 function inicializar(){
     // Incializar variables Globales
 
     partidasJugadas = 0;
     palabrasAdivinadas = 0;
-/*
+
     botonJugar.addEventListener('click', jugar);
     botonLetra.addEventListener('click', procesarCaracterIngresado);
 
     botonJugar.hidden = true;
     botonLetra.hidden = false;
     letraIngresada.hidden = false;
-*/    
+    turnos.hidden = false;
 }
 
 function seleccionarPalabra(palabras){
@@ -69,8 +70,15 @@ function mostrarCaracterEnLetrasIngresadas(grilla, caracter){
     grilla.appendChild(letra);
 }
 
+function mostrarTurnos(turnosEnPantalla, cantidadTurnos){
+    // Muestra la cantidad de Turnos restantes
+
+    turnosEnPantalla.textContent = cantidadTurnos;
+}
+
+
 function mostrarCartel(ganador){
-    // Muestra lso carteles de final de juego, tanto para Ganador como para Perdedorpantalla
+    // Muestra los carteles de final de juego, tanto para Ganador como para Perdedor
     if (ganador){
 
     } else {
@@ -88,6 +96,12 @@ function esGanador(palabra){
     }
 
     return true;
+}
+
+function mostrarEstadistica(){
+    // Muestra la estadisticas de las partidas jugadas
+
+    alert( "Jugaste " + partidasJugadas + " partidas\n" + "Acertastes " + palabrasAdivinadas + " palabras\n" + "No pudiste adivinar " + (partidasJugadas - palabrasAdivinadas) + " veces" );
 }
 
 function sacarAcentos(palabra){
@@ -134,6 +148,8 @@ function procesarCaracterIngresado(){
     const caracter = letraIngresada.textContent;
 
     if (!caracterValido(caracter)) {
+        alert( "Solo son validas las letras de la A-Z o a-z" );
+
         return ;
     }
 
@@ -151,7 +167,11 @@ function procesarCaracterIngresado(){
 
     turnosRestantes--;
 
+    mostrarTurnos(turnos, turnosRestantes);    
+
     if (esGanador(palabraAdivinada)) {
+        palabrasAdivinadas++;
+        
         mostrarCartel(true);
     } else {
         if (turnosRestantes === 0){
@@ -193,6 +213,7 @@ function jugar(){
     botonJugar.hidden = false;
     botonLetra.hidden = true;
     letraIngresada.hidden = true;
+    turnos.hidden = true;
 
     partidasJugadas++
 
@@ -207,6 +228,9 @@ function jugar(){
     inicializarGrillaLetras(grillaLetras);
 
     turnosRestantes = palabraSeleccionada.length + 1;
+
+    mostrarTurnos(turnos, turnosRestantes);
+
     letrasIngresadas = []
 }
 
