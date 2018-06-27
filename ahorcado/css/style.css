@@ -3,8 +3,11 @@ body{
     background-image: url('../img/fondo.png')
 }
 h1{
-    margin: 10% 20%;
+    display: inline-table;
     float: right;
+    font-family: 'Enriqueta', serif;
+    margin: auto auto;
+    color: #fff;
 }
 h3{
     margin: 0;
@@ -20,25 +23,29 @@ h3{
     background-color: brown;
 }
 .presentacion{
+    font-size: 1.5em;
     width: 55%;
     background-color: #37373A;
-    display: table;
+    display: flex;
 }
 .logo{
     width: 22%;
     height: auto;
     float: left;
+    margin: auto auto;
 }
 .comienzo{
     display: -webkit-box;
     width: 45%;
 }
 #boton{
+    font-size: 2em;
     color: #fff;
     background-color: #FA1E29;
     cursor: pointer;
     display: -webkit-box;
     width: -webkit-fill-available;
+    font-family: 'Roboto', sans-serif;
 }
 #juego{
     margin-top: 20px;
@@ -53,9 +60,11 @@ h3{
 }
 .turnos{
     display: inline-table;
+    font-family: 'Roboto', sans-serif;
 }
 .tituloTurno{
     color: #fff;
+    font-size: 25px;
 }
 #campoDeIngreso{
     display: inline-block;
@@ -74,7 +83,7 @@ h3{
 #selectorDeTurno p{
     margin: 2px 2px;
     text-align: center;
-    font-size: 50px;
+    font-size: 57px;
 }
 .textoDeLetras{
     display: -webkit-inline-box;
@@ -96,7 +105,7 @@ h3{
     height: fit-content;
     width: 53px;
     border-style: solid;
-    border-width: 0px 0px 4px 0px;
+    border-width: 0px 0px 6px 0px;
     font-size: 5em;
     margin: 80px 10px;
 }
@@ -118,6 +127,16 @@ h3{
 }
 
 @media (min-width:769px){
+    h1{
+    display: inline-flex;
+    }
+    .presentacion{
+    font-size: 2em;
+    }
+    #campoDeIngreso{
+    display: inline-table;
+    margin: 12px 41px;
+    }
     #selectorDeTurno{
     margin: 0px 2px;
     }
@@ -126,8 +145,13 @@ h3{
     margin-top: 22px;
     margin-left: 20px;
     }
-    #campoDeIngreso{
-    display: inline-table;
-    margin: 12px 41px;
+}
+
+
+@media (min-width:915px){
+    .logo{
+    width: auto;
+    height: auto;
+    margin: 0;
     }
 }
