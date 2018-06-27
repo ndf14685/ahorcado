@@ -1,38 +1,38 @@
-let partidasJugadas, palabrasAdivinadas, palabraSeleccionada, turnosRestantes, letrasIngresadas, palabraAdivinada;
-const grillaLetras = document.getElementById("letrasIngresadas");
-const grillaPalabra = document.getElementById("espacioDeLetras");
-const botonJugar = document.getElementById("boton");
-const botonLetra = document.getElementById("enter");
-const letraIngresada = document.getElementById("recuadroLetra");
-const turnos = document.getElementById("selectorDeTurno");
+let partidasJugadas, palabrasAdivinadas, palabraSeleccionada, turnosRestantes, letrasIngresadas, palabraAdivinada, grillaLetras, grillaPalabra, botonJugar, botonLetra, letraIngresada, turnos;
 
 function inicializar(){
     // Incializar variables Globales
 
+    grillaLetras = document.getElementById("letrasIngresadas");
+    grillaPalabra = document.getElementById("espacioDeLetras");
+    botonJugar = document.getElementById("boton");
+    botonLetra = document.getElementById("enter");
+    turnos = document.getElementById("selectorDeTurno");
+
     partidasJugadas = 0;
     palabrasAdivinadas = 0;
 
-    botonJugar.addEventListener('click', jugar);
-    botonLetra.addEventListener('click', procesarCaracterIngresado);
+    botonJugar.addEventListener("click", jugar);
+    botonLetra.addEventListener("click", procesarCaracterIngresado);
 
-    botonJugar.hidden = true;
-    botonLetra.hidden = false;
-    letraIngresada.hidden = false;
-    turnos.hidden = false;
+    document.getElementById("juego").style.display = "none";
+    botonJugar.hidden = false;
 }
 
 function seleccionarPalabra(palabras){
     // Seleccionar Palabra aleatoria de un array
 
-    return palabras[Math.floor(Math.random() * palabras.length)];
+    return palabras[Math.floor(Math.random() * palabras.length)].toUpperCase();
 }
 
 function caracterValido(caracter){
     // Validar que el caracter introducido sea solo letra
 
-    if( caracter == null || caracter.length == 0 || /^\s+$/.test(caracter) ) {
+    if( caracter === null || caracter.length === 0 || /^\s+$/.test(caracter) ) {
         return false;
     }
+
+    return true;
 }
 
 function caracterEnPalabra(caracter, palabra, adivinada){
@@ -40,9 +40,9 @@ function caracterEnPalabra(caracter, palabra, adivinada){
     let estaEnPalabra = false;
 
     for (let i=0; i < palabra.length; i++){
-        if (caracter.toUpperCase() === palabra[i].toUpperCase()){
+        if (caracter === palabra[i]){
             if (adivinada){
-                adivinada[i] = palabra[i].toUpperCase();
+                adivinada[i] = palabra[i];
             }
 
             estaEnPalabra = true;
@@ -80,9 +80,10 @@ function mostrarTurnos(turnosEnPantalla, cantidadTurnos){
 function mostrarCartel(ganador){
     // Muestra los carteles de final de juego, tanto para Ganador como para Perdedor
     if (ganador){
-
+        // Reemplazar por cartel especifico
+       alert("Ganaste!");
     } else {
-
+        alert("Perdiste!");
     }
 }
 
@@ -90,7 +91,7 @@ function esGanador(palabra){
     // Verifica si acerto la palabra
 
     for (let i=0; i < palabra.length; i++){
-        if (palabra[i] === "_"){
+        if (palabra[i] === ""){
             return false;
         }
     }
@@ -106,11 +107,11 @@ function mostrarEstadistica(){
 
 function sacarAcentos(palabra){
     // Reemplaza las vocales acentuadas por vocales sin acento para las comparaciones
-
-    let nuevaPalabra = '';
+    
+    let nuevaPalabra = "";
     
     for (let i=0; i < palabra.length; i++){
-        let letra = palabra[i].toUpperCase();
+        let letra = palabra[i];
 
         switch ( letra ) {
             case "Á": 
@@ -145,8 +146,11 @@ function sacarAcentos(palabra){
 function procesarCaracterIngresado(){
     // Procesa el caracter ingresado por el usuario
     
-    const caracter = letraIngresada.textContent;
+    // @ts-ignore
+    const caracter = document.getElementById("recuadroLetra").value.toUpperCase() ;    
 
+    document.getElementById("recuadroLetra").value = "";
+    
     if (!caracterValido(caracter)) {
         alert( "Solo son validas las letras de la A-Z o a-z" );
 
@@ -196,7 +200,7 @@ function inicializarGrillaPalabra(grilla, cantidadLetras){
     for (let i = 0; i < cantidadLetras; i++){
         const letra = document.createElement("div");
         letra.className = "guiones";
-        letra.textContent = "_";
+        letra.textContent = "";
         grilla.appendChild(letra);
     }
 }
@@ -210,17 +214,16 @@ function inicializarGrillaLetras(grilla){
 function jugar(){
     // Lanza el juego e inicializar lo necesario para la nueva partida
 
-    botonJugar.hidden = false;
-    botonLetra.hidden = true;
-    letraIngresada.hidden = true;
-    turnos.hidden = true;
+    document.getElementById("juego").style.display = "block";
+    botonJugar.hidden = true;
 
     partidasJugadas++
-
+    
     palabraSeleccionada = sacarAcentos(seleccionarPalabra(listado));
+    palabraAdivinada = [];
 
     for (let i=0; i < palabraSeleccionada.length; i++){
-        palabraAdivinada.push('_');
+        palabraAdivinada.push("");
     }
 
     inicializarGrillaPalabra(grillaPalabra, palabraSeleccionada.length);
@@ -236,4 +239,4 @@ function jugar(){
 
 window.onload = function() {
     inicializar();
-  };
+};
