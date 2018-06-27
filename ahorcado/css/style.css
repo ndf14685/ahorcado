@@ -7,6 +7,7 @@ h1{
 }
 h3{
     margin: 0;
+    color: #fff;
 }
 .contenedor{
     width: 90%;
@@ -29,22 +30,24 @@ h3{
 .turnos-ingreso{
     display: -webkit-box;
     width: 45%;
-    padding: 20px;
+    padding: 0px 20px;
     background-color: rgb(48, 98, 113);
 }
 .turnos{
     display: inline-table;
 }
 #campoDeIngreso{
-    display: inline-table;
+    display: inline;
+    margin: 0;
 }
+
 #selectorDeTurno{
-    font-size: 4em;
+    font-size: 25px;
+    text-align: center;
     margin: 0px 2px;
-    width: 80px;
-    height: 80px;
-    background-color: #fff;
-    border: #000 solid 2px;
+    width: 100px;
+    height: 100px;
+    background-color: #1c2261;
 }
 .textoDeLetras{
     font-size: 2em;
@@ -80,4 +83,15 @@ h3{
     color: #fff;
     background-color: blueviolet;
     cursor: pointer;
+}
+
+@media (min-width:724px){
+    .turnos{
+    display: block;
+    margin-top: 22px;
+    }
+    #campoDeIngreso{
+    display: inline-table;
+    margin: 12px 41px;
+    }
 }
