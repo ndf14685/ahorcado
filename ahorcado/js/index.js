@@ -1,5 +1,5 @@
 // @ts-nocheck
-let partidasJugadas, palabrasAdivinadas, palabraSeleccionada, turnosRestantes, letrasIngresadas, palabraAdivinada, grillaLetras, grillaPalabra, botonJugar, botonLetra, letraIngresada, turnos;
+let partidasJugadas, palabrasAdivinadas, palabraSeleccionada, turnosRestantes, letrasIngresadas, palabraAdivinada, grillaLetras, grillaPalabra, botonJugar, botonLetra, botonArriesgar, letraIngresada, turnos;
 
 function inicializar(){
     // Incializar variables Globales
@@ -8,6 +8,7 @@ function inicializar(){
     grillaPalabra = document.getElementById("espacioDeLetras");
     botonJugar = document.getElementById("boton");
     botonLetra = document.getElementById("enter");
+    botonArriesgar = document.getElementById("arriesgar");
     turnos = document.getElementById("selectorDeTurno");
 
     partidasJugadas = 0;
@@ -15,6 +16,7 @@ function inicializar(){
 
     botonJugar.addEventListener("click", jugar);
     botonLetra.addEventListener("click", procesarCaracterIngresado);
+    botonArriesgar.addEventListener("click", arriesgarPalabra);
 
     document.getElementById("juego").style.display = "none";
 }
@@ -87,7 +89,7 @@ function mostrarCartel(ganador){
 
     if (ganador){
         titulo = "Ganaste!";
-        mensaje = "Adivinaste la palabra";
+        mensaje = "Adivinaste la palabra '" + palabraSeleccionada + "'";
         icono = "success";
     } else {
         titulo = "Perdiste!";
@@ -146,6 +148,19 @@ function mostrarCartel(ganador){
             default:
                 inicializar();
         }
+    });
+}
+
+function arriesgarPalabra(){
+    swal("Escribe la palabra completa:", {
+        content: "input",
+    })
+    .then((value) => {
+        if(value.toUpperCase() === palabraSeleccionada){
+            mostrarCartel(true);
+        } else {            
+            mostrarCartel(false);
+        }        
     });
 }
 
