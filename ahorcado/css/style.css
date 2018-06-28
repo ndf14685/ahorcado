@@ -133,6 +133,11 @@ h3{
     background-color: blueviolet;
     cursor: pointer;
 }
+#arriesgar{
+    color: #fff;
+    background-color: blueviolet;
+    cursor: pointer;
+}
 
 @media (min-width:769px){
     h1{
