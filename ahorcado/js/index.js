@@ -28,7 +28,7 @@ function seleccionarPalabra(palabras){
 function caracterValido(caracter){
     // Validar que el caracter introducido sea solo letra
 
-    if( caracter === null || caracter.length === 0 || (!(caracter.charCodeAt() >= 65 && caracter.charCodeAt() <= 90) && !caracter.charCodeAt() === 209)) {
+    if( caracter === null || caracter.length === 0 || caracter.charCodeAt() < 65 || (caracter.charCodeAt() > 90 && caracter.charCodeAt() !== 209)) {
         return false;
     }
 
@@ -83,12 +83,70 @@ function mostrarTurnos(turnosEnPantalla, cantidadTurnos){
 
 function mostrarCartel(ganador){
     // Muestra los carteles de final de juego, tanto para Ganador como para Perdedor
+    let titulo, mensaje, icono;
+
     if (ganador){
-        // Reemplazar por cartel especifico
-       alert("Ganaste!");
+        titulo = "Ganaste!";
+        mensaje = "Adivinaste la palabra";
+        icono = "success";
     } else {
-        alert("Perdiste!\nLa palabra era '" + palabraSeleccionada + "'");
+        titulo = "Perdiste!";
+        mensaje = "La palabra era '" + palabraSeleccionada + "'";
+        icono = "error";
     }
+
+    swal(titulo, mensaje, icono, {
+        buttons: {
+            seguir: {
+                text: "Seguir Jugando!",
+                value: "seguir"
+            },           
+            estadistica: {
+                text: "Estadisticas",
+                value: "estadistica"
+            },
+            salir: {
+                text: "Salir",
+                value: "exit"
+            },          
+        },
+    })
+    .then((value) => {
+        switch (value) {
+            case "seguir":
+                jugar();
+                break;
+
+            case "estadistica":
+                swal("Estadisticas","Jugaste " + partidasJugadas + " partidas\n" + "Acertastes " + palabrasAdivinadas + " palabras\n" + "No pudiste adivinar " + (partidasJugadas - palabrasAdivinadas) + " veces","info", {
+                    buttons: {
+                        seguir: {
+                            text: "Seguir Jugando!",
+                            value: "seguir"
+                        },           
+                        salir: {
+                            text: "Salir",
+                            value: "exit"
+                        },          
+                    },     
+                })
+                .then((value) => {
+                    switch (value) {
+                        case "seguir":
+                            jugar();
+                            break;
+
+                        default:
+                            inicializar()
+                    }
+                });
+
+                break;
+
+            default:
+                inicializar();
+        }
+    });
 }
 
 function esGanador(palabraOriginal, palabraCompletada){
@@ -106,12 +164,6 @@ function esGanador(palabraOriginal, palabraCompletada){
     }
 
     return true;
-}
-
-function mostrarEstadistica(){
-    // Muestra la estadisticas de las partidas jugadas
-
-    alert( "Jugaste " + partidasJugadas + " partidas\n" + "Acertastes " + palabrasAdivinadas + " palabras\n" + "No pudiste adivinar " + (partidasJugadas - palabrasAdivinadas) + " veces" );
 }
 
 function sacarAcentos(palabra){
@@ -159,21 +211,23 @@ function procesarCaracterIngresado(){
     const caracter = document.getElementById("recuadroLetra").value.toUpperCase() ;    
 
     document.getElementById("recuadroLetra").value = "";
+
+    document.getElementById("recuadroLetra").focus();
     
     if (!caracterValido(caracter)) {
-        alert( "Solo son validas las letras de la A-Z o a-z" );
+        swal("","Solo son validos los caracteres de la A-Z!","error");
 
         return ;
     }
 
     if (caracterEnPalabra(caracter, letrasIngresadas)){
-        alert( "La letra '" + caracter + "' ya la habias seleccionado y no estaba en la palabra a adivinar" );
+        swal("","La letra '" + caracter + "' ya la habias seleccionado y no estaba en la palabra a adivinar","info" );
 
         return;
     }
 
     if (caracterEnPalabra(caracter, palabraAdivinada)){
-        alert( "La letra '" + caracter + "' ya la habias seleccionado y ya esta en la palabra a adivinar" );        
+        swal("","La letra '" + caracter + "' ya la habias seleccionado y ya esta en la palabra a adivinar","info" );        
 
         return;
     }
