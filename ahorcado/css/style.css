@@ -109,6 +109,14 @@ h3{
     font-size: 5em;
     margin: 80px 10px;
 }
+.espacios{
+    height: fit-content;
+    width: 53px;    
+    border-width: 0px 0px 6px 0px;
+    font-size: 5em;
+    margin: 80px 10px;
+}
+
 #letrasIngresadas{
     width: 55%;
 }

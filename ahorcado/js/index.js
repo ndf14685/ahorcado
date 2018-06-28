@@ -1,3 +1,4 @@
+// @ts-nocheck
 let partidasJugadas, palabrasAdivinadas, palabraSeleccionada, turnosRestantes, letrasIngresadas, palabraAdivinada, grillaLetras, grillaPalabra, botonJugar, botonLetra, letraIngresada, turnos;
 
 function inicializar(){
@@ -20,14 +21,14 @@ function inicializar(){
 
 function seleccionarPalabra(palabras){
     // Seleccionar Palabra aleatoria de un array
-
-    return palabras[Math.floor(Math.random() * palabras.length)].toUpperCase();
+    return "RAYO LASER"
+    //return palabras[Math.floor(Math.random() * palabras.length)].toUpperCase();
 }
 
 function caracterValido(caracter){
     // Validar que el caracter introducido sea solo letra
 
-    if( caracter === null || caracter.length === 0 || /^\s+$/.test(caracter) ) {
+    if( caracter === null || caracter.length === 0 || (!(caracter.charCodeAt() >= 65 && caracter.charCodeAt() <= 90) && !caracter.charCodeAt() === 209)) {
         return false;
     }
 
@@ -37,11 +38,15 @@ function caracterValido(caracter){
 function caracterEnPalabra(caracter, palabra, adivinada){
     // Verificar que la letra seleccionada este en una determinada palabra, de ser necesario la muestra como adivinada
     let estaEnPalabra = false;
+    let espacios = 0;
 
     for (let i=0; i < palabra.length; i++){
+        if (adivinada && palabra[i] === " "){
+            espacios++;
+        }
         if (caracter === palabra[i]){
             if (adivinada){
-                adivinada[i] = palabra[i];
+                adivinada[i - espacios] = palabra[i];
             }
 
             estaEnPalabra = true;
@@ -82,15 +87,20 @@ function mostrarCartel(ganador){
         // Reemplazar por cartel especifico
        alert("Ganaste!");
     } else {
-        alert("Perdiste!");
+        alert("Perdiste!\nLa palabra era '" + palabraSeleccionada + "'");
     }
 }
 
-function esGanador(palabra){
+function esGanador(palabraOriginal, palabraCompletada){
     // Verifica si acerto la palabra
 
-    for (let i=0; i < palabra.length; i++){
-        if (palabra[i] === ""){
+    let espacios = 0;
+    for (let i=0; i < palabraOriginal.length; i++){
+        if (palabraOriginal[i] === " "){
+            espacios++;
+        }
+
+        if (palabraOriginal[i + espacios] !== palabraCompletada[i]){
             return false;
         }
     }
@@ -157,30 +167,34 @@ function procesarCaracterIngresado(){
     }
 
     if (caracterEnPalabra(caracter, letrasIngresadas)){
+        alert( "La letra '" + caracter + "' ya la habias seleccionado y no estaba en la palabra a adivinar" );
+
         return;
     }
 
     if (caracterEnPalabra(caracter, palabraAdivinada)){
+        alert( "La letra '" + caracter + "' ya la habias seleccionado y ya esta en la palabra a adivinar" );        
+
         return;
     }
 
     if (caracterEnPalabra(caracter, palabraSeleccionada, palabraAdivinada)){
         mostrarCaracterEnPalabra(grillaPalabra, palabraAdivinada);
+
+        if (esGanador(palabraSeleccionada, palabraAdivinada)) {
+            palabrasAdivinadas++;
+            
+            mostrarCartel(true);
+        } 
     } else {
         letrasIngresadas.push(caracter);
 
         mostrarCaracterEnLetrasIngresadas(grillaLetras, caracter);
-    }
 
-    turnosRestantes--;
+        turnosRestantes--;
 
-    mostrarTurnos(turnos, turnosRestantes);    
+        mostrarTurnos(turnos, turnosRestantes);        
 
-    if (esGanador(palabraAdivinada)) {
-        palabrasAdivinadas++;
-        
-        mostrarCartel(true);
-    } else {
         if (turnosRestantes === 0){
             mostrarCartel(false);
         }
@@ -195,14 +209,20 @@ function blanquearGrilla(grilla){
     }
 }
 
-function inicializarGrillaPalabra(grilla, cantidadLetras){
+function inicializarGrillaPalabra(grilla, palabra){
     // Configura la grilla donde se mostrara el estado de la palabra a adivinar
 
     blanquearGrilla(grilla);
 
-    for (let i = 0; i < cantidadLetras; i++){
+    for (let i = 0; i < palabra.length; i++){
         const letra = document.createElement("div");
-        letra.className = "guiones";
+
+        if (palabra[i] !== " ") {
+            letra.className = "guiones";
+        } else {
+            letra.className = "espacios";
+        }
+        
         letra.textContent = "";
         grilla.appendChild(letra);
     }
@@ -225,10 +245,12 @@ function jugar(){
     palabraAdivinada = [];
 
     for (let i=0; i < palabraSeleccionada.length; i++){
-        palabraAdivinada.push("");
+        if (palabraSeleccionada[i] !== " "){
+            palabraAdivinada.push("");
+        }
     }
 
-    inicializarGrillaPalabra(grillaPalabra, palabraSeleccionada.length);
+    inicializarGrillaPalabra(grillaPalabra, palabraSeleccionada);
 
     inicializarGrillaLetras(grillaLetras);
 

@@ -20,6 +20,14 @@ Cuando la palabra es adivinada antes del límite de turnos se dictamina al jugad
 
 Cuando el jugador termina la partida se le mostrará un aviso en pantalla, indicando si ganó o perdió. Dicho cartel debe tener 3 botones en la parte inferior, en el siguiente orden: un botón para seguir jugando, con el texto SEGUIR JUGANDO, otro para mostrar las estadísticas de partidas jugadas (palabras adivinadas) de cantidad de veces jugadas, aciertos y derrotas desde que inició la sesión con el texto ESTADISTICAS y un boton para cerrarlo el aviso, con el texto SALIR.
 
+### Agregado por el Cliente el 27/06/2018
+Para el #TeamAhorcado @Oliver Korn @Dani @Sergio Bianchi @Jorge Schenone @Nestor Fleitas, les dejo acá los cambios que analizamos hoy que estaria bueno que implementen:
+
+- Cambiar _turnos_ por _jugadas restantes_
+- Si el jugador acierta una letra, no se descuentan jugadas
+- Si hay una palabra con espacios, los espacios se completan automaticamente y solo se ponen guiones para las letras
+- Si el jugador cree que conoce la palabra y le quedan juagas restantes, puede arriesgar y escribir la palabra completa, apretando el boton ARRIESGAR. Si no acierta la palabra, pierde
+
 ### Tecnologías
 
 * HTML
