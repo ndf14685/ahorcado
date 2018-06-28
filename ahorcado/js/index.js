@@ -21,8 +21,8 @@ function inicializar(){
 
 function seleccionarPalabra(palabras){
     // Seleccionar Palabra aleatoria de un array
-    return "RAYO LASER"
-    //return palabras[Math.floor(Math.random() * palabras.length)].toUpperCase();
+
+    return palabras[Math.floor(Math.random() * palabras.length)].toUpperCase();
 }
 
 function caracterValido(caracter){
