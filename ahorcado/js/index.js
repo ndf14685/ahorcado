@@ -16,7 +16,6 @@ function inicializar(){
     botonLetra.addEventListener("click", procesarCaracterIngresado);
 
     document.getElementById("juego").style.display = "none";
-    botonJugar.hidden = false;
 }
 
 function seleccionarPalabra(palabras){
@@ -161,6 +160,10 @@ function procesarCaracterIngresado(){
         return;
     }
 
+    if (caracterEnPalabra(caracter, palabraAdivinada)){
+        return;
+    }
+
     if (caracterEnPalabra(caracter, palabraSeleccionada, palabraAdivinada)){
         mostrarCaracterEnPalabra(grillaPalabra, palabraAdivinada);
     } else {
@@ -215,7 +218,6 @@ function jugar(){
     // Lanza el juego e inicializar lo necesario para la nueva partida
 
     document.getElementById("juego").style.display = "block";
-    botonJugar.hidden = true;
 
     partidasJugadas++
     
