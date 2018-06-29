@@ -157,6 +157,8 @@ function arriesgarPalabra(){
     })
     .then((value) => {
         if(value.toUpperCase() === palabraSeleccionada){
+            palabrasAdivinadas++;
+            
             mostrarCartel(true);
         } else {            
             mostrarCartel(false);
