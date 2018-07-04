@@ -73,7 +73,7 @@ h3{
 
 #selectorDeTurno{
     color: #fff;
-    font-size: 25px;
+    font-size: 86px;
     text-align: center;
     margin: 15px 17px;
     width: 100px;
@@ -95,14 +95,15 @@ h3{
     margin: 3px 6px;
 }
 .seccion2{
+    display: flex;
     background-color: white;
 }
 #espacioDeLetras{
-    display: -webkit-box;
-    margin: 0% 3%;
+    display: inline-flex;
+    margin: auto auto;
 }
 .guiones{
-    height: fit-content;
+    height: auto;
     width: 53px;
     border-style: solid;
     border-width: 0px 0px 6px 0px;
@@ -129,14 +130,19 @@ h3{
     border: #000 solid 2px;
 }
 #enter{
+    padding: 5px;
     color: #fff;
-    background-color: blueviolet;
+    background-color: crimson;
     cursor: pointer;
+    font-size: 20px;
 }
 #arriesgar{
+    position: inherit;
     color: #fff;
-    background-color: blueviolet;
+    background-color: #0A2C41;
     cursor: pointer;
+    padding: 8px;
+    border: #fff 2px;
 }
 
 @media (min-width:769px){
@@ -147,11 +153,15 @@ h3{
     font-size: 2em;
     }
     #campoDeIngreso{
-    display: inline-table;
-    margin: 12px 41px;
+    display: block;
+    margin: 68px 0px 0px 53px;
     }
     #selectorDeTurno{
     margin: 0px 2px;
+    }
+    #arriesgar{
+    position: absolute;
+    margin-top: 8px;
     }
     .turnos{
     display: block;
